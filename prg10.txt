@@ -1,0 +1,24 @@
+def objective(x):
+    return -(x - 3) ** 2 + 9
+
+
+def hill_climb(start, step=1):
+    current = start
+
+    while True:
+        neighbours = [current - step, current + step]
+
+        best = max(neighbours, key=objective)
+
+        if objective(best) <= objective(current):
+            return current
+
+        current = best
+
+
+start = int(input("Enter starting value: "))
+
+best = hill_climb(start)
+
+print("Local optimum found at x =", best)
+print("Objective value =", objective(best))
